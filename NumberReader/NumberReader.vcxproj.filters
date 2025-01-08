@@ -24,12 +24,24 @@
     <ClCompile Include="png.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="bmp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="files.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="process.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="png.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bmp.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="files.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

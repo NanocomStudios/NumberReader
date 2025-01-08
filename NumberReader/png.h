@@ -13,7 +13,6 @@ struct HeadChunk {
 	unsigned char interlaceMethod;
 };
 
-long int fileSize(const char file_name[]);
 long decodePNG(unsigned char* file, long size, void* bitStream);
 char isValidPNG(unsigned char* file);
 void toLittleEndian(void* inpArray, long size);

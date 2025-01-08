@@ -1,7 +1,8 @@
 #include <iostream>
 
 #include "process.h"
-#include "png.h"
+#include "bmp.h"
+#include "files.h"
 
 using namespace std;
 
@@ -17,7 +18,7 @@ int main() {
 		cout << output[i] << " ";
 	}cout << endl;
 
-	long size = fileSize("0.png");
+	long size = fileSize("3.bmp");
 
 	if (size == -1) {
 		cout << "error 1";
@@ -25,7 +26,7 @@ int main() {
 	}
 
 	FILE* fpt;
-	fopen_s(&fpt, "0.png", "rb");
+	fopen_s(&fpt, "3.bmp", "rb");
 
 	if (fpt == NULL) {
 		cout << "error 2";
@@ -35,5 +36,5 @@ int main() {
 
 	cout << fread(file, 1, size, fpt) << endl;
 
-	decodePNG(file, size, file);
+	decodeBMP(file, size, file);
 }
