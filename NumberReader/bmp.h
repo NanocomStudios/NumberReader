@@ -14,4 +14,4 @@ struct BitmapHeader {
 	int importentColorsNo;
 };
 
-long decodeBMP(unsigned char* file, long size, void* bitStream);
+long decodeBMP(unsigned char* file, long size, void** bitStream);

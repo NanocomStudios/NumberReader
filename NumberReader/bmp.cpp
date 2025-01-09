@@ -4,7 +4,8 @@
 
 using namespace std;
 
-long decodeBMP(unsigned char* file, long size, void* bitStream) {
+long decodeBMP(unsigned char* file, long size, void** bitStream) {
+	long bitStreamSize;
 	if (*(short*)file == *(short*)"BM") {
 
 		BitmapHeader* bitmapHeader = (BitmapHeader*)(file + 14);
@@ -20,34 +21,38 @@ long decodeBMP(unsigned char* file, long size, void* bitStream) {
 			return -3;
 		}
 
-		long bitStreamSize = bitmapHeader->height * bitmapHeader->width;
+		bitStreamSize = bitmapHeader->height * bitmapHeader->width;
 
 		cout << bitStreamSize << endl;
 
-		bitStream = malloc(bitStreamSize);
+		*bitStream = malloc(bitStreamSize);
 
-		if (bitStream == NULL) {
+		if (*bitStream == NULL) {
 			return -4;
 		}
 
 		for (long i = 0; i < bitmapHeader->height; i++) {
 			for (long j = 0; j < bitmapHeader->width; j++) {
-				*((unsigned char*)bitStream + (i * bitmapHeader->width) + j) = *(file + size - 1 - ((i + 1) * bitmapHeader->width) + j);
+				*(*(unsigned char**)bitStream + (i * bitmapHeader->width) + j) = *(file + size - 1 - ((i + 1) * bitmapHeader->width) + j);
 
-				if ((int)*((unsigned char*)bitStream + (i * bitmapHeader->width) + j)) {
+				if ((int)*(*(unsigned char**)bitStream + (i * bitmapHeader->width) + j)) {
+					*(*(unsigned char**)bitStream + (i * bitmapHeader->width) + j) = 1;
 					cout << "X";
 				}
 				else {
+					*(*(unsigned char**)bitStream + (i * bitmapHeader->width) + j) = 0;
 					cout << ".";
 				}
 
 			}
 			cout << endl;
+			
 		}
 
 	}
 	else {
 		return -1;
 	}
+	return bitStreamSize;
 }
 

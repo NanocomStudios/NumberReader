@@ -37,5 +37,10 @@ int main() {
 	cout << fread(file, 1, size, fpt) << endl;
 
 	void* bitStream = NULL;
-	decodeBMP(file, size, bitStream);
+
+	long bitStreamSize = decodeBMP(file, size, &bitStream);
+
+	for (long i = 0; i < bitStreamSize; i++) {
+		cout << (int)*((char*)bitStream + i);
+	}
 }
