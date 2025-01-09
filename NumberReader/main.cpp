@@ -36,5 +36,6 @@ int main() {
 
 	cout << fread(file, 1, size, fpt) << endl;
 
-	decodeBMP(file, size, file);
+	void* bitStream = NULL;
+	decodeBMP(file, size, bitStream);
 }
